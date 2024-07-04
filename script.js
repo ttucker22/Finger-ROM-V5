@@ -407,10 +407,16 @@ function addImpairments(impairments) {
     return impairments.reduce((acc, imp) => acc + imp, 0);
 }
 
+function convertToHD(dt, fingerType) {
+    const conversionFactor = fingerType === 'index' || fingerType === 'middle' ? 0.2 : 0.1;
+    return Math.round(dt * conversionFactor);
+}
+
 document.getElementById('calculateButton').addEventListener('click', function() {
     const forms = document.querySelectorAll('.calculatorForm');
 
     forms.forEach(form => {
+        const fingerType = form.closest('.calculator-box').id.replace('Finger', '').toLowerCase();
         const dipFlexion = form.querySelector('.DIPFlexion').value;
         const dipExtension = form.querySelector('.DIPExtension').value;
         const dipAnkylosis = form.querySelector('.DIPAnkylosis').value;
@@ -461,8 +467,9 @@ document.getElementById('calculateButton').addEventListener('click', function() 
         form.querySelector('.MPAnkylosisImpairment').textContent = mpImpairments[2] !== undefined ? mpImpairments[2] : 0;
         form.querySelector('.MPTotalImpairment').textContent = mpImpairment;
 
+        const hdImpairment = convertToHD(totalImpairment, fingerType);
         const combinedStepsText = combinedSteps.map(step => `${step} C`).join(' ').slice(0, -1);
-        const CVC = `CVC: ${combinedStepsText} = ${totalImpairment} DT`;
+        const CVC = `CVC: ${combinedStepsText} = ${totalImpairment} DT = ${hdImpairment} HD`;
 
         form.querySelector('.cvc-result').textContent = CVC;
     });
