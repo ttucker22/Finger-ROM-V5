@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finger ROM Impairment Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+            margin-top: -10px;
+        }
+        .calculator-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .calculator-box {
+            flex: 1 1 45%;
+            max-width: 45%;
+            margin: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px; /* Match font size */
+            text-align: center; /* Center the input text */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .cvc-result {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        .full-width {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Finger ROM Impairment Calculator</h1>
+    <h2>Based on Figures 16-21, 16-23 & 16-25 on pages 461 - 464 of The AMA Guides 5th Edition</h2>
+
+    <div class="calculator-container">
+        <div class="calculator-box" id="indexFinger">
+            <h3>Index</h3>
+            <form class="calculatorForm">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Joint</th>
+                            <th>Flexion</th>
+                            <th>Extension</th>
+                            <th>Ankylosis</th>
+                            <th>Total Joint Impairment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DIP</td>
+                            <td><input type="number" class="DIPFlexion"></td>
+                            <td><input type="number" class="DIPExtension"></td>
+                            <td><input type="number" class="DIPAnkylosis"></td>
+                            <td class="DIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="DIPFlexionImpairment">0</td>
+                            <td class="DIPExtensionImpairment">0</td>
+                            <td class="DIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>PIP</td>
+                            <td><input type="number" class="PIPFlexion"></td>
+                            <td><input type="number" class="PIPExtension"></td>
+                            <td><input type="number" class="PIPAnkylosis"></td>
+                            <td class="PIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="PIPFlexionImpairment">0</td>
+                            <td class="PIPExtensionImpairment">0</td>
+                            <td class="PIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>MP</td>
+                            <td><input type="number" class="MPFlexion"></td>
+                            <td><input type="number" class="MPExtension"></td>
+                            <td><input type="number" class="MPAnkylosis"></td>
+                            <td class="MPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="MPFlexionImpairment">0</td>
+                            <td class="MPExtensionImpairment">0</td>
+                            <td class="MPAnkylosisImpairment">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cvc-result"></div>
+            </form>
+        </div>
+
+        <div class="calculator-box" id="middleFinger">
+            <h3>Middle</h3>
+            <form class="calculatorForm">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Joint</th>
+                            <th>Flexion</th>
+                            <th>Extension</th>
+                            <th>Ankylosis</th>
+                            <th>Total Joint Impairment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DIP</td>
+                            <td><input type="number" class="DIPFlexion"></td>
+                            <td><input type="number" class="DIPExtension"></td>
+                            <td><input type="number" class="DIPAnkylosis"></td>
+                            <td class="DIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="DIPFlexionImpairment">0</td>
+                            <td class="DIPExtensionImpairment">0</td>
+                            <td class="DIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>PIP</td>
+                            <td><input type="number" class="PIPFlexion"></td>
+                            <td><input type="number" class="PIPExtension"></td>
+                            <td><input type="number" class="PIPAnkylosis"></td>
+                            <td class="PIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="PIPFlexionImpairment">0</td>
+                            <td class="PIPExtensionImpairment">0</td>
+                            <td class="PIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>MP</td>
+                            <td><input type="number" class="MPFlexion"></td>
+                            <td><input type="number" class="MPExtension"></td>
+                            <td><input type="number" class="MPAnkylosis"></td>
+                            <td class="MPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="MPFlexionImpairment">0</td>
+                            <td class="MPExtensionImpairment">0</td>
+                            <td class="MPAnkylosisImpairment">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cvc-result"></div>
+            </form>
+        </div>
+
+        <div class="calculator-box" id="ringFinger">
+            <h3>Ring</h3>
+            <form class="calculatorForm">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Joint</th>
+                            <th>Flexion</th>
+                            <th>Extension</th>
+                            <th>Ankylosis</th>
+                            <th>Total Joint Impairment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DIP</td>
+                            <td><input type="number" class="DIPFlexion"></td>
+                            <td><input type="number" class="DIPExtension"></td>
+                            <td><input type="number" class="DIPAnkylosis"></td>
+                            <td class="DIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="DIPFlexionImpairment">0</td>
+                            <td class="DIPExtensionImpairment">0</td>
+                            <td class="DIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>PIP</td>
+                            <td><input type="number" class="PIPFlexion"></td>
+                            <td><input type="number" class="PIPExtension"></td>
+                            <td><input type="number" class="PIPAnkylosis"></td>
+                            <td class="PIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="PIPFlexionImpairment">0</td>
+                            <td class="PIPExtensionImpairment">0</td>
+                            <td class="PIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>MP</td>
+                            <td><input type="number" class="MPFlexion"></td>
+                            <td><input type="number" class="MPExtension"></td>
+                            <td><input type="number" class="MPAnkylosis"></td>
+                            <td class="MPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="MPFlexionImpairment">0</td>
+                            <td class="MPExtensionImpairment">0</td>
+                            <td class="MPAnkylosisImpairment">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cvc-result"></div>
+            </form>
+        </div>
+
+        <div class="calculator-box" id="littleFinger">
+            <h3>Little</h3>
+            <form class="calculatorForm">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Joint</th>
+                            <th>Flexion</th>
+                            <th>Extension</th>
+                            <th>Ankylosis</th>
+                            <th>Total Joint Impairment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DIP</td>
+                            <td><input type="number" class="DIPFlexion"></td>
+                            <td><input type="number" class="DIPExtension"></td>
+                            <td><input type="number" class="DIPAnkylosis"></td>
+                            <td class="DIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="DIPFlexionImpairment">0</td>
+                            <td class="DIPExtensionImpairment">0</td>
+                            <td class="DIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>PIP</td>
+                            <td><input type="number" class="PIPFlexion"></td>
+                            <td><input type="number" class="PIPExtension"></td>
+                            <td><input type="number" class="PIPAnkylosis"></td>
+                            <td class="PIPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="PIPFlexionImpairment">0</td>
+                            <td class="PIPExtensionImpairment">0</td>
+                            <td class="PIPAnkylosisImpairment">0</td>
+                        </tr>
+                        <tr>
+                            <td>MP</td>
+                            <td><input type="number" class="MPFlexion"></td>
+                            <td><input type="number" class="MPExtension"></td>
+                            <td><input type="number" class="MPAnkylosis"></td>
+                            <td class="MPTotalImpairment" rowspan="2"></td>
+                        </tr>
+                        <tr>
+                            <td>Impairment</td>
+                            <td class="MPFlexionImpairment">0</td>
+                            <td class="MPExtensionImpairment">0</td>
+                            <td class="MPAnkylosisImpairment">0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="cvc-result"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="full-width">
+        <button id="calculateButton">Calculate</button>
+    </div>
+
+    <div id="result"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
